@@ -9,10 +9,13 @@ BlogList = React.createClass({
 	 * @return {object} meteor data accessed through this.data
 	 */
 	getMeteorData() {
+		let handle = Meteor.subscribe('posts');
 		return {
+			postsLoading: ! handle.ready(),
 			posts: Posts.find({}, {sort: {date: -1}}).fetch(),
 		}
 	},
+
 	/**
 	 * Format data to DD/MM/YYYY
 	 * @param  {object} date 
@@ -41,14 +44,25 @@ BlogList = React.createClass({
 		});
 	},
 	/**
+	 * Render html showing data loading state
+	 * @return {jsx}
+	 */
+	renderLoading() {
+		return (
+			<p>Loading posts...</p>
+		);
+	},
+	/**
 	 * Render this component
 	 * @return {html}
 	 */
 	render() {
+		console.log(this.data);
+		let content = (!this.data.postsLoading) ? this.renderPostList(this.data.posts) : this.renderLoading();
 		return (
 			<div className="blog-list">
 				<h2>Recent</h2>
-				{this.renderPostList(this.data.posts)}
+				{content}
 			</div>
 		);
 	}

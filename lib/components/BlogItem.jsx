@@ -7,6 +7,7 @@ BlogItem = React.createClass({
 	 * @return {object} from Meteor Mongo 
 	 */
 	getMeteorData() {
+		let handle = Meteor.subscribe('posts');
 	    return {
 	      post: Posts.findOne(this.props.params.post),
 	    };
