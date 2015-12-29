@@ -15,6 +15,9 @@ Meteor.startup(function () {
 		<Route path="/blog" component={Blog}>
 			<Route path="/blog/:post" component={BlogItem} />
 		</Route>
+		<Route path="/admin" component={Admin}>
+			<Route path="/admin/add-new-post" component={AddNewPost} />
+		</Route>
       </Route>
     </Router>
   ), document.getElementById('app-container'));

@@ -1,9 +1,16 @@
 Navigation = React.createClass({
+	mixins: [ReactMeteorData],
+	getMeteorData() {
+		return {
+			loggedInUser: Meteor.user()
+		}
+	},
 	getDefaultNavigationItems() {
-		return [
+		let navItems = [
 			{menuTitle: 'Home', link: '/'},
-			{menuTitle: 'Blog', link: '/blog'}
+			{menuTitle: 'Blog', link: '/blog'},
 		];
+		return navItems;
 	},
 	getInitialState() {
 		return {
@@ -16,11 +23,22 @@ Navigation = React.createClass({
 			return <NavigationItem key={index} link={item.link} menuTitle={item.menuTitle} />;
 		});
 	},
+	navItemExists(menuTitle, myArray){
+	    for (var i=0; i < myArray.length; i++) {
+	        if (myArray[i].menuTitle === menuTitle) {
+	            return myArray[i];
+	        }
+	    }
+	},
 	render() {
+		let navItems = this.state.items;
+		if (this.data.loggedInUser && !this.navItemExists('Admin', navItems)) {
+			navItems.push({menuTitle: 'Admin', link: '/admin'});
+		}
 		return (
 			<div className="navigation">
 				<ul>
-					{this.renderNavigationItems(this.state.items)}
+					{this.renderNavigationItems(navItems)}
 				</ul>
 			</div>
 		);

@@ -1,3 +1,4 @@
+const Link = ReactRouter.Link;
 HomeContent = React.createClass({
 	render() {
 		return (
