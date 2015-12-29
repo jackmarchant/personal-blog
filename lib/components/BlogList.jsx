@@ -57,7 +57,6 @@ BlogList = React.createClass({
 	 * @return {html}
 	 */
 	render() {
-		console.log(this.data);
 		let content = (!this.data.postsLoading) ? this.renderPostList(this.data.posts) : this.renderLoading();
 		return (
 			<div className="blog-list">

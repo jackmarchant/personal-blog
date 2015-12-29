@@ -6,7 +6,6 @@ Meteor.startup(function() {
 				body: newBlogPost.body,
 				date: new Date(),
 			});
-			console.log('created new post');
 		},
 		'createNewUser': function(newUser) {
 			Accounts.createUser({
