@@ -1,5 +1,6 @@
 const Link = ReactRouter.Link;
 BlogList = React.createClass({
+	
 	// Meteor data
 	mixins: [ReactMeteorData],
 
@@ -8,20 +9,24 @@ BlogList = React.createClass({
 	 * @return {object} meteor data accessed through this.data
 	 */
 	getMeteorData() {
-		// Posts.insert({
-		//   date: new Date(),
-		//   title: "My second post!",
-		//   body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus magnam, vel numquam eligendi suscipit voluptatum asperiores consequuntur totam, distinctio soluta ex sit voluptate dolorum modi nam. Accusantium reiciendis quas repellendus."
-		// });
 		return {
 			posts: Posts.find({}, {sort: {date: -1}}).fetch(),
 		}
 	},
-	
+	/**
+	 * Format data to DD/MM/YYYY
+	 * @param  {object} date 
+	 * @return {string} formatted date
+	 */
 	formatDate(date) {
-		return date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
+		return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 	},
-
+	
+	/**
+	 * Render list of recent posts
+	 * @param  {array} posts 
+	 * @return {html}
+	 */
 	renderPostList(posts) {
 		let self = this;
 		return posts.map(function(post, index) {
@@ -35,6 +40,10 @@ BlogList = React.createClass({
 			);
 		});
 	},
+	/**
+	 * Render this component
+	 * @return {html}
+	 */
 	render() {
 		return (
 			<div className="blog-list">

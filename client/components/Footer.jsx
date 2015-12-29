@@ -1,4 +1,8 @@
 Footer = React.createClass({
+	/**
+	 * Render this component
+	 * @return {jsx}
+	 */
 	render() {
 		return (
 			<div id="footer-main" className="container text-center">

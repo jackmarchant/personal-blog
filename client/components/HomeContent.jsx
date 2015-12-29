@@ -1,5 +1,9 @@
 const Link = ReactRouter.Link;
 HomeContent = React.createClass({
+	/**
+	 * Render this component
+	 * @return {jsx}
+	 */
 	render() {
 		return (
 			<div className="container home-content">

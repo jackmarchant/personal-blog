@@ -1,10 +1,19 @@
 AddNewPost = React.createClass({
+	/**
+	 * Initial state of component
+	 * @return {object} state
+	 */
 	getInitialState() {
 		return {
 			title: '',
 			body: '',
 		};
 	},
+	/**
+	 * Handle change of text input values
+	 * @param  {event} e
+	 * @return {bool} false
+	 */
 	handleTextChange(e) {
 		let field = e.target.name, value = e.target.value;
 		if (field == 'title') {
@@ -18,6 +27,11 @@ AddNewPost = React.createClass({
 		}
 		return false;
 	},
+	/**
+	 * Handle submission of new post form
+	 * @param  {event} e
+	 * @return {void}
+	 */
 	handleSubmit(e) {
 		e.preventDefault();
 		let title = this.state.title, body = this.state.body;
@@ -28,6 +42,10 @@ AddNewPost = React.createClass({
 			body: '',
 		});
 	},
+	/**
+	 * Render component html
+	 * @return {html}
+	 */
 	render() {
 		return (
 			<div className="add-new-post">

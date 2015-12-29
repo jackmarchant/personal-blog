@@ -1,15 +1,24 @@
 BlogItem = React.createClass({
 	// Meteor data
 	mixins: [ReactMeteorData],
-
+	
+	/**
+	 * Meteor Data
+	 * @return {object} from Meteor Mongo 
+	 */
 	getMeteorData() {
 	    return {
 	      post: Posts.findOne(this.props.params.post),
 	    };
 	},
-
+	
+	/**
+	 * Format data to DD/MM/YYYY
+	 * @param  {object} date 
+	 * @return {string} formatted date
+	 */
 	formatDate(date) {
-		return date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
+		return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 	},
 	
 	/**

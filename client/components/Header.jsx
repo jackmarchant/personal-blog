@@ -1,4 +1,8 @@
 Header = React.createClass({
+	/**
+	 * Render this component
+	 * @return {jsx}
+	 */
 	render() {
 		return (
 			<div id="header-main">

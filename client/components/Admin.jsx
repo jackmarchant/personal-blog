@@ -1,11 +1,20 @@
 Admin = React.createClass({
+	// Meteor data
 	mixins: [ReactMeteorData],
+	/**
+	 * Meteor data from mongo
+	 * @return {object} data
+	 */
 	getMeteorData() {
 		return {
 			userLoggedIn: (Meteor.userId()) ? true : false,
 			user: Meteor.user(),
 		};
 	},
+	/**
+	 * Initial state of component
+	 * @return {object} state
+	 */
 	getInitialState() {
 		return {
 			email: '',
@@ -14,6 +23,11 @@ Admin = React.createClass({
 			formMessage: '',
 		};
 	},
+	/**
+	 * Handle text change of field values
+	 * @param  {event} 	e
+	 * @return {bool} 	false
+	 */
 	handleTextChange(e) {
 		let field = e.target.name, value = e.target.value;
 		if (field == 'email') {
@@ -27,6 +41,11 @@ Admin = React.createClass({
 		}
 		return false;
 	},
+	/**
+	 * Handle submission of admin login form, can also create a new user if toggle is selected
+	 * @param  {event} e
+	 * @return {bool}  false
+	 */
 	handleSubmit(e) {
 		e.preventDefault();
 		if (this.state.newUserToggle) {
@@ -46,11 +65,19 @@ Admin = React.createClass({
 			return false;
 		}
 	},
+	/**
+	 * Handle checkbox toggle change
+	 * @return {void}
+	 */
 	handleCheckboxChange() {
 		this.setState({
 			newUserToggle: !this.state.newUserToggle
 		});
 	},
+	/**
+	 * Get the admin user details
+	 * @return {jsx} admin email address
+	 */
 	getAdminUser() {
 		let user = this.data.user;
 		if (user) {
@@ -59,9 +86,17 @@ Admin = React.createClass({
 		}
 		return null;
 	},
+	/**
+	 * Logout currentUser
+	 * @return {void} 
+	 */
 	logoutUser() {
 		Meteor.logout();
 	},
+	/**
+	 * Render a form message
+	 * @return {jsx}
+	 */
 	renderFormMessage() {
 		if (this.state.formMessage) {
 			return (
@@ -72,6 +107,10 @@ Admin = React.createClass({
 		}
 		return null;
 	},
+	/**
+	 * Render this component
+	 * @return {jsx}
+	 */
 	render() {
 		if (!this.data.userLoggedIn) {
 			return (
