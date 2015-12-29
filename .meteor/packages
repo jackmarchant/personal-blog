@@ -25,3 +25,4 @@ fourseven:scss
 npm-container
 accounts-base
 accounts-password
+reactrouter:react-router-ssr
