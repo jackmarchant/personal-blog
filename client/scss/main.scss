@@ -64,6 +64,13 @@ a {
 	}
 }
 
+.checkbox-group {
+	input[type="checkbox"] {
+		float:left;
+		margin-right:5px;
+	}
+}
+
 .home-content {
 	text-align:center;
 	max-width:600px;
