@@ -1,3 +1,4 @@
+// Individual post only
 BlogItem = React.createClass({
 	// Meteor data
 	mixins: [ReactMeteorData],

@@ -29,7 +29,7 @@ BlogList = React.createClass({
 				);
 			});
 		}
-		return null;
+		return <p>Couldn't load posts. Please try again later.</p>;
 	},
 	/**
 	 * Render html showing data loading state
@@ -45,7 +45,7 @@ BlogList = React.createClass({
 	 * @return {html}
 	 */
 	render() {
-		let content = (!this.props.postsLoading) ? this.renderPostList(this.props.posts) : this.renderLoading();
+		let content = (!this.props.loading) ? this.renderPostList(this.props.posts) : this.renderLoading();
 		return (
 			<div className="blog-list">
 				<h2>Recent</h2>
