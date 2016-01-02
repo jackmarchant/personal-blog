@@ -41,20 +41,31 @@ Admin = React.createClass({
 		}
 		return false;
 	},
+	handleError(error) {
+		if (error) {
+			this.setState({
+				formMessage: error.reason
+			});
+		}
+		return true;
+	},
 	/**
 	 * Handle submission of admin login form, can also create a new user if toggle is selected
 	 * @param  {event} e
 	 * @return {bool}  false
 	 */
 	handleSubmit(e) {
+		let newUserCreated;
 		e.preventDefault();
 		if (this.state.newUserToggle) {
-			Meteor.call('createNewUser', {email: this.state.email, password: this.state.password});
-			this.setState({
-				email: '',
-				password: '',
-				formMessage: 'A new user has been created. You can now login with your email address.',
-			});
+			newUserCreated = Meteor.call('createNewUser', {email: this.state.email, password: this.state.password},this.handleError);
+			if (newUserCreated) {
+				this.setState({
+					email: '',
+					password: '',
+					formMessage: 'A new user has been created. You can now login with your email address.',
+				});
+			}
 			return false;
 		} else {
 			Meteor.loginWithPassword(this.state.email, this.state.password);

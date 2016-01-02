@@ -7,6 +7,7 @@ AddNewPost = React.createClass({
 		return {
 			title: '',
 			body: '',
+			formMessage: '',
 		};
 	},
 	/**
@@ -40,7 +41,22 @@ AddNewPost = React.createClass({
 		this.setState({
 			title: '',
 			body: '',
+			formMessage: 'A new blog post has been created',
 		});
+	},
+	/**
+	 * Render a form message
+	 * @return {jsx}
+	 */
+	renderFormMessage() {
+		if (this.state.formMessage) {
+			return (
+				<div className="form-message">
+					<p>{this.state.formMessage}</p>
+				</div>
+			);
+		}
+		return null;
 	},
 	/**
 	 * Render component html
@@ -50,6 +66,7 @@ AddNewPost = React.createClass({
 		return (
 			<div className="add-new-post">
 				<h3>Add new post</h3>
+				{this.renderFormMessage()}
 				<form onSubmit={this.handleSubmit}>
 					<fieldset>
 						<div className="form-group">

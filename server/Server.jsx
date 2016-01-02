@@ -5,6 +5,7 @@ Meteor.startup(function() {
 				title: newBlogPost.title,
 				body: newBlogPost.body,
 				date: new Date(),
+				slug: helperMethods.createSlug(newBlogPost.title),
 			});
 		},
 		'createNewUser': function(newUser) {
@@ -15,3 +16,12 @@ Meteor.startup(function() {
 		}
 	});
 });
+
+helperMethods = {
+	createSlug(title) {
+		return title
+        .toLowerCase()
+        .replace(/[^\w ]+/g,'')
+        .replace(/ +/g,'-');
+	}
+}
