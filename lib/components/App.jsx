@@ -1,9 +1,9 @@
 App = React.createClass({
-	componentWillMount() {
-		if (Meteor.isClient) {
-			return false;
-		}
-	},
+	// componentWillMount() {
+	// 	if (Meteor.isClient) {
+	// 		return false;
+	// 	}
+	// },
 	/**
 	 * Render this component
 	 * @return {jsx}

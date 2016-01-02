@@ -26,3 +26,5 @@ npm-container
 accounts-base
 accounts-password
 reactrouter:react-router-ssr
+sanjo:jasmine
+velocity:html-reporter
