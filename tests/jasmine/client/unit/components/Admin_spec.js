@@ -11,14 +11,14 @@ describe("Admin Component", function() {
     };
   });
 
-  it('should change state when user toggles checkbox', function() {
+  it('should change state when user toggles checkbox', () => {
     renderWithProps({});
     expect(component.state.newUserToggle).toBe(false);
     component.handleCheckboxChange();
     expect(component.state.newUserToggle).toBe(true);
   });
 
-  it('should render a form when not logged in', function() {
+  it('should render a form when not logged in', () => {
       expect($el.find('form').length).toBe(1);
   });
 

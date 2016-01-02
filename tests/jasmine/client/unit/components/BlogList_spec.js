@@ -11,7 +11,7 @@ describe("BlogList Component", function() {
     };
   });
 
-  it('should not load posts', function() {
+  it('should not load posts', () => {
     renderWithProps({
       loading: true,
       posts: [{_id: '12312xsxa', title: 'hello world', body: 'hello again', date: new Date()}]
@@ -20,7 +20,7 @@ describe("BlogList Component", function() {
     expect($el.find('article').length == 1).toBeFalsy();
   });
 
-  it('should load posts', function() {
+  it('should load posts', () => {
     renderWithProps({
       loading: false,
       posts: [{_id: '12312xsxa', title: 'hello world', body: 'hello again', date: new Date()}]

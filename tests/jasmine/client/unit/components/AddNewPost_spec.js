@@ -11,7 +11,7 @@ describe("AddNewPost Component", function() {
     };
   });
 
-  it('should render a form with submit handlers', function() {
+  it('should render a form with submit handlers', () => {
       renderWithProps({});
       expect($el.find('form').length).toBe(1);
       expect($el.find('form').attr('onsubmit')).not.toBeNull();

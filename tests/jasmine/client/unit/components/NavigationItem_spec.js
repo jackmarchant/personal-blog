@@ -16,7 +16,7 @@ describe("NavigationItem Component", function() {
     };
   });
 
-  it('should have all defined props', function() {
+  it('should have all defined props', () => {
     renderWithProps(defProps);
     expect($el.attr('data-reactid')).toBeDefined();
     expect($el.find('a').attr('href')).not.toBeNull();
