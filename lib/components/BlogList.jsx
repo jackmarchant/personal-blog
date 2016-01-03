@@ -38,7 +38,7 @@ BlogList = React.createClass({
 	 */
 	getPostSummary(html) {
 		let htmlString = html.toString();
-		return htmlString.replace(/<\/?[^>]+(>|$)/g, "");
+		return htmlString.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 165);
 	},
 	/**
 	 * Render list of recent posts
