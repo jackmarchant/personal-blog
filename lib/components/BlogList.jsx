@@ -32,6 +32,15 @@ BlogList = React.createClass({
 		return null;
 	},
 	/**
+	 * Get a string version of post body
+	 * @param {html} html to be parsed to string 
+	 * @return {string}
+	 */
+	getPostSummary(html) {
+		let htmlString = html.toString();
+		return htmlString.replace(/<\/?[^>]+(>|$)/g, "");
+	},
+	/**
 	 * Render list of recent posts
 	 * @param  {array} posts 
 	 * @return {html}
@@ -45,7 +54,7 @@ BlogList = React.createClass({
 					<article key={index} className="blog-item">
 						<Link to={postLink}><h3>{post.title}</h3></Link>
 		 				<p>{self.formatDate(post.date)}</p>
-		 				<p>{post.body}</p>
+		 				<p>{self.getPostSummary(post.body)}</p>
 						{self.renderAdminSection(post._id)}
 		 			</article>
 				);

@@ -22,7 +22,6 @@ BlogItem = React.createClass({
 	formatDate(date) {
 		return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 	},
-	
 	/**
 	 * Render component
 	 * @return {object} html
@@ -35,7 +34,7 @@ BlogItem = React.createClass({
 					<article className="blog-post">
 						<h3>{post.title}</h3>
 						<p>{this.formatDate(post.date)}</p>
-						<p>{post.body}</p>
+						<div dangerouslySetInnerHTML={{__html: post.body}} />
 		 			</article>
 		 			<Link to="/blog" className="btn btn-info">All Posts</Link>
 		 		</div>
