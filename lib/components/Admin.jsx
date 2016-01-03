@@ -46,6 +46,7 @@ Admin = React.createClass({
 			this.setState({
 				formMessage: error.reason
 			});
+			return false;
 		}
 		return true;
 	},
@@ -55,7 +56,7 @@ Admin = React.createClass({
 	 * @return {bool}  false
 	 */
 	handleSubmit(e) {
-		let newUserCreated;
+		let newUserCreated, loggedIn;
 		e.preventDefault();
 		if (this.state.newUserToggle) {
 			newUserCreated = Meteor.call('createNewUser', {email: this.state.email, password: this.state.password},this.handleError);
@@ -68,11 +69,13 @@ Admin = React.createClass({
 			}
 			return false;
 		} else {
-			Meteor.loginWithPassword(this.state.email, this.state.password);
-			this.setState({
-				email: '',
-				password: '',
-			});
+			loggedIn = Meteor.loginWithPassword(this.state.email, this.state.password, this.handleError);
+			if (loggedIn) {
+				this.setState({
+					email: '',
+					password: '',
+				});
+			}
 			return false;
 		}
 	},
