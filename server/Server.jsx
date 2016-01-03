@@ -8,12 +8,15 @@ Meteor.startup(function() {
 				slug: helperMethods.createSlug(newBlogPost.title),
 			});
 		},
+		'removeBlogPost': function(post) {
+			Posts.remove(post._id);
+		},
 		'createNewUser': function(newUser) {
 			Accounts.createUser({
 				email : newUser.email,
 				password : newUser.password,
 			});
-		}
+		},
 	});
 });
 

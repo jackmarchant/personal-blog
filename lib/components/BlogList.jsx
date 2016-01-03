@@ -1,6 +1,5 @@
 const Link = ReactRouter.Link;
 BlogList = React.createClass({
-	
 	/**
 	 * Format data to DD/MM/YYYY
 	 * @param  {object} date 
@@ -9,7 +8,29 @@ BlogList = React.createClass({
 	formatDate(date) {
 		return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 	},
-	
+	/**
+	 * Remove a blog post
+	 * @param  {varchar} postId id of the post to remove
+	 * @return {boolean} removed blog post successfully
+	 */
+	removeBlogPost(postId) {
+		Meteor.call('removeBlogPost', {_id: postId});
+		return true;
+	},
+	/**
+	 * Show admin control tools
+	 * @return {jsx} html
+	 */
+	renderAdminSection(postId) {
+		if (Meteor.userId()) {
+			return (
+				<div className="admin-section">
+					<button onClick={this.removeBlogPost.bind(this, postId)} className="removePost btn btn-danger">Remove</button>
+				</div>
+			);
+		}
+		return null;
+	},
 	/**
 	 * Render list of recent posts
 	 * @param  {array} posts 
@@ -25,6 +46,7 @@ BlogList = React.createClass({
 						<Link to={postLink}><h3>{post.title}</h3></Link>
 		 				<p>{self.formatDate(post.date)}</p>
 		 				<p>{post.body}</p>
+						{self.renderAdminSection(post._id)}
 		 			</article>
 				);
 			});

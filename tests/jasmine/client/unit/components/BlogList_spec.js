@@ -1,5 +1,5 @@
-/*global BlogList, renderComponent */
-
+/*global BlogList, renderComponent, loginWithTestUser */
+'use strict';
 describe("BlogList Component", function() {
   var defProps, renderWithProps, component, el, $el;
 
