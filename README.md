@@ -1,5 +1,5 @@
 # Jack Marchant's Personal Blog
-Built with [React](http://reactjs.com, "ReactJS") and [Meteor](https://www.meteor.com)
+Built with [React](http://reactjs.com) and [Meteor](https://www.meteor.com)
 
 ## Features
 - Home, Blog list and item pages
