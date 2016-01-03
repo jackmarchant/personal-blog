@@ -41,6 +41,11 @@ Admin = React.createClass({
 		}
 		return false;
 	},
+	/**
+	 * Handle error during a form event
+	 * @param  {object} error thrown as a result of a form event
+	 * @return {boolean} false if error thrown
+	 */
 	handleError(error) {
 		if (error) {
 			this.setState({

@@ -19,7 +19,7 @@ BlogList = React.createClass({
 		let self = this;
 		if (posts) {
 			return posts.map(function(post, index) {
-				let postLink = '/blog/' + post._id;
+				let postLink = '/blog/' + post.slug;
 				return (
 					<article key={index} className="blog-item">
 						<Link to={postLink}><h3>{post.title}</h3></Link>

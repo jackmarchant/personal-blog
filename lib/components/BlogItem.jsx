@@ -10,7 +10,7 @@ BlogItem = React.createClass({
 	getMeteorData() {
 		let handle = Meteor.subscribe('posts');
 	    return {
-	      post: Posts.findOne(this.props.params.post),
+	      post: Posts.findOne({'slug': this.props.params.slug}),
 	    };
 	},
 	
@@ -37,7 +37,7 @@ BlogItem = React.createClass({
 						<p>{this.formatDate(post.date)}</p>
 						<p>{post.body}</p>
 		 			</article>
-		 			<Link to="/blog">All Posts</Link>
+		 			<Link to="/blog" className="btn btn-info">All Posts</Link>
 		 		</div>
 			);
 		} return <div>Couldn't find post</div>;
