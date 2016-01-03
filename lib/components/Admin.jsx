@@ -29,7 +29,7 @@ Admin = React.createClass({
 	 * @return {bool} 	false
 	 */
 	handleTextChange(e) {
-		let field = e.target.name, value = e.target.value;
+		let field = e.target.id, value = e.target.value;
 		if (field == 'email') {
 			this.setState({
 				email: value,
@@ -52,7 +52,7 @@ Admin = React.createClass({
 				formMessage: error.reason
 			});
 			return false;
-		}
+		} 
 		return true;
 	},
 	/**
@@ -61,28 +61,12 @@ Admin = React.createClass({
 	 * @return {bool}  false
 	 */
 	handleSubmit(e) {
-		let newUserCreated, loggedIn;
 		e.preventDefault();
 		if (this.state.newUserToggle) {
-			newUserCreated = Meteor.call('createNewUser', {email: this.state.email, password: this.state.password},this.handleError);
-			if (newUserCreated) {
-				this.setState({
-					email: '',
-					password: '',
-					formMessage: 'A new user has been created. You can now login with your email address.',
-				});
-			}
-			return false;
-		} else {
-			loggedIn = Meteor.loginWithPassword(this.state.email, this.state.password, this.handleError);
-			if (loggedIn) {
-				this.setState({
-					email: '',
-					password: '',
-				});
-			}
-			return false;
+			Meteor.call('createNewUser', {email: this.state.email, password: this.state.password},this.handleError);
 		}
+		Meteor.loginWithPassword(this.state.email, this.state.password, this.handleError);
+		return false;
 	},
 	/**
 	 * Handle checkbox toggle change
@@ -127,6 +111,13 @@ Admin = React.createClass({
 		return null;
 	},
 	/**
+	 * Get button text depending on state
+	 * @return {string} text for submit button
+	 */
+	getButtonText() {
+		return (this.state.newUserToggle) ? 'Create new user' : 'Log in';
+	},
+	/**
 	 * Render this component
 	 * @return {jsx}
 	 */
@@ -140,18 +131,18 @@ Admin = React.createClass({
 						<fieldset>
 							<div className="form-group">
 								<label htmlFor="email">Email Address</label>
-								<input type="text" name="email" className="form-control" onChange={this.handleTextChange} />
+								<input type="text" id="email" className="form-control" onChange={this.handleTextChange} />
 							</div>
 							<div className="form-group">
 								<label htmlFor="password">Password</label>
-								<input type="password" name="password" className="form-control" onChange={this.handleTextChange} />
+								<input type="password" id="password" className="form-control" onChange={this.handleTextChange} />
 							</div>
 							<div className="checkbox-group">
-								<input type="checkbox" name="new-user" onClick={this.handleCheckboxChange} />
+								<input type="checkbox" id="new-user" onClick={this.handleCheckboxChange} />
 								<label htmlFor="new-user">New User</label>
 							</div>
 							<div className="form-group actions paddingtop">
-								<button className="btn btn-success" onClick={this.handleSubmit}>Log in</button>
+								<button className="btn btn-success" onClick={this.handleSubmit}>{this.getButtonText()}</button>
 							</div>
 						</fieldset>
 					</form>
