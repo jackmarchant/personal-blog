@@ -1,5 +1,5 @@
 /*global Admin, renderComponent */
-
+'use strict';
 describe("Admin Component", function() {
   var defProps, renderWithProps, component, el, $el;
 
@@ -20,6 +20,15 @@ describe("Admin Component", function() {
 
   it('should render a form when not logged in', () => {
       expect($el.find('form').length).toBe(1);
+  });
+
+  it('should change the state of form message on error', () => {
+    expect(component.state.formMessage).toEqual('');
+    let error = {
+      reason: 'A sample message',
+    };
+    component.handleError(error);
+    expect(component.state.formMessage).toEqual('A sample message');
   });
 
 });
